@@ -83,17 +83,17 @@ services:
     networks:
       - vti_d2
 
-  # kibana:
-  #   image: docker.elastic.co/kibana/kibana-oss:7.5.2
-  #   container_name: kibana
-  #   ports:
-  #     - ${KIBANA_PORT}:5601
-  #   environment:
-  #     SERVER_NAME: kibana.example.org
-  #     ELASTICSEARCH_HOSTS: '["http://es01:9200","http://es02:9200","http://es03:9200"]'
-  #   volumes:
-  #     - ./mounted/kibana/config/kibana.yml:/usr/share/kibana/config/kibana.yml
-  #   depends_on:
-  #     - elasticsearch
-  #   networks:
-  #     - vti_d2
+  kibana:
+    image: docker.elastic.co/kibana/kibana-oss:7.5.2
+    container_name: kibana
+    ports:
+      - ${KIBANA_PORT}:5601
+    environment:
+      SERVER_NAME: kibana.example.org
+      ELASTICSEARCH_HOSTS: '["http://es01:9200","http://es02:9200","http://es03:9200"]'
+    volumes:
+      - ./mounted/kibana/config/kibana.yml:/config/kibana.yml
+    depends_on:
+      - elasticsearch
+    networks:
+      - vti_d2
